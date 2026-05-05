@@ -1,0 +1,8 @@
+[project]
+name = "rot-cipher-toolkit"
+version = "0.1.0"
+description = "CLI tool for analyzing and decoding obfuscated text"
+requires-python = ">=3.8"
+
+[project.scripts]
+rot = "rot_toolkit.cli:main"
