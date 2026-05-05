@@ -1,6 +1,7 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+*.pyo
 *$py.class
 
 # Virtual environments
@@ -26,18 +27,26 @@ Thumbs.db
 
 # Pytest
 .pytest_cache/
+.cache/
 
 # Coverage
 htmlcov/
 .coverage
+.coverage.*
 
 # Temporary files
 *.tmp
 *.bak
+*.swp
 
-# Output files (IMPORTANT for your tool)
+# Output files (tool-specific)
 encrypted.txt
 decrypted.txt
 
+# Security (keys)
+*.key
+key.key
+
 # Misc
-*.swp
+.ipynb_checkpoints/
+.python-version
