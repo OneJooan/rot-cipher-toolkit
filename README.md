@@ -46,10 +46,16 @@ rot encrypt file.txt --shift 13
 rot decrypt file.txt --shift 13
 ```
 
+### Basic analyze
+
+```bash
+rot analyze file.txt
+```
+
 ### JSON output
 
 ```bash
-rot analiyze file.txt --json
+rot analyze file.txt --json
 ```
 
 ## 🧠 How it works
@@ -69,7 +75,7 @@ pytest
 ## 📁 Structure
 
 ```bash
-root_toolkit/
+rot_toolkit/
 tests/
 ```
 
