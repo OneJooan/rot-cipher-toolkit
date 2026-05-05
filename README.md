@@ -1,6 +1,6 @@
 # ROT Cipher Toolkit
 
-CLI tool for detecting, analyzing and decoding obfuscated text using classical ROT/Caesar cipher techniques and heuristic scoring.
+Lightweight cryptanalysis CLI tool for detecting and decoding simple text obfuscation techniques such as ROT/Caesar ciphers.
 
 ---
 
@@ -13,7 +13,9 @@ Simple obfuscation techniques are still commonly found in:
 - Malware samples
 - Legacy scripts
 
-This tool was built to:
+Despite their simplicity, these techniques are still used to hide information in multiple contexts.
+
+The goal of this tool is to:
 
 - Understand how these techniques work
 - Automate their analysis
@@ -21,12 +23,24 @@ This tool was built to:
 
 ---
 
+## 📦 Installation
+
+Clone the repository and install in editable mode:
+
+```bash
+git clone <repo-url>
+cd rot-cipher-toolkit
+pip install -e .
+```
+
+---
+
 ## ✨ Features
 
-- Encrypt / Decrypt files
-- Brute-force ROT analysis
-- Heuristic scoring system
-- Top candidate detection
+- File encryption and decryption (ROT-based)
+- Brute-force ROT analysis (1–25 shifts)
+- Heuristic-based scoring system
+- Automatic best candidate detection
 - JSON output for automation
 - stdin support (pipeline ready)
 
@@ -46,17 +60,45 @@ rot encrypt file.txt --shift 13
 rot decrypt file.txt --shift 13
 ```
 
-### Basic analyze
+### Analyze
 
 ```bash
 rot analyze file.txt
 ```
 
-### JSON output
+### Analyze (JSON output)
 
 ```bash
 rot analyze file.txt --json
 ```
+
+### Pipeline
+
+```bash
+cat file.txt | rot analyze
+```
+
+#### Example
+```text
+[INFO] Most probable shift: 13
+[INFO] Confidence: HIGH
+
+Hello world, this is a test message
+```
+
+#### Example use case
+
+Analyzing obfuscated input from logs or suspicious sources:
+
+```text
+Input:
+Gur synt vf va gur ebbz
+
+Output:
+The flag is in the room
+```
+
+---
 
 ## 🧠 How it works
 
@@ -64,20 +106,32 @@ The analysis mode evaluates all possible shifts (1–25) and ranks them based on
 
 - Common word detection
 - Character validity ratio
-- Letter frequency heuristics
+- Letter frequency analysis
+
+---
 
 ## 🧪 Testing
+
+Run tests with:
 
 ```bash
 pytest
 ```
 
+---
+
 ## 📁 Structure
 
-```bash
-rot_toolkit/
-tests/
+```text
+.
+├── rot_toolkit/
+├── tests/
+├── README.md
+├── Makefile
+└── pyproject.toml
 ```
+
+---
 
 ## ⚙️ Makefile Commands
 
@@ -88,11 +142,14 @@ make install     # Install project
 make test        # Run tests
 make analyze FILE=example.txt
 make encrypt FILE=file.txt SHIFT=13
+make decrypt FILE=file.txt SHIFT=13
 ```
 
 ## ⚠️ Disclaimer
 
 This is not secure encryption.
+
+Do not use this tool for protecting sensitive data.
 
 This project is for:
 
