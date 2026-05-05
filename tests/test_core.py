@@ -14,3 +14,13 @@ def test_symbols():
 
 def test_negative_shift():
     assert rot_process("Uryyb", -13) == "Hello"
+
+def test_analysis_detects_rot13():
+    from rot_toolkit.analysis import analyze_text
+    results = analyze_text("Uryyb")
+    assert results[0][0] == 13
+
+def test_analysis_detects_symbols():
+    from rot_toolkit.analysis import analyze_text
+    results = analyze_text("Uryyb!")
+    assert results[0][0] == 13
